@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+
+int main () {
+    int T;
+    scanf("%d", &T);
+    
+    // Loop Test Case
+    for(int i = 1; i <= T; i++){
+        char S[1005];
+        char U[1005];
+        scanf("%s", S);
+        scanf("%s", U);
+
+        // --- BAGIAN 1: HITUNG STOK (S) ---
+        int cS[26] = {0}; // Siapkan 26 kotak kosong
+        int lenS = strlen(S);
+        
+        for(int j = 0; j < lenS; j++){
+            // PERBAIKAN: Pakai j, bukan i
+            // Konsep: 'a'-'a'=0, 'b'-'a'=1, 'c'-'a'=2
+            int index = S[j] - 'a'; 
+            cS[index]++; // Masukkan barang ke kotak
+        }
+
+        // --- BAGIAN 2: TANDAI FILTER (U) ---
+        int adaDiU[26] = {0};
+        int lenU = strlen(U);
+        
+        for(int j = 0; j < lenU; j++){
+            // PERBAIKAN: Pakai j, bukan i
+            int index = U[j] - 'a';
+            adaDiU[index] = 1; // Tandai kotak ini "OK"
+        }
+
+        // --- BAGIAN 3: CETAK ---
+        printf("Case %d: ", i); // Soal minta format "Case 1: "
+
+        // Jalan urut dari kotak 0 (a) sampai 25 (z)
+        for(int k = 0; k < 26; k++) {
+            
+            // Cek 1: Apakah kotak ini ada stiker "OK" (ada di U)?
+            if(adaDiU[k] == 1){
+                
+                // Cek 2: Kalau OK, cetak sebanyak isi stoknya (cS)
+                for(int l = 0; l < cS[k]; l++){
+                    // Ubah index balik jadi huruf: 0+'a' = 'a'
+                    printf("%c", k + 'a'); 
+                }
+            }
+        }
+        printf("\n");
+    }   
+
+    return 0;
+}
