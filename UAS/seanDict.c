@@ -29,7 +29,7 @@ for(int i = 0; i<tc; i++){
        scanf("%c", find);
        int index = -1;
        for(int k = 0; k<tc; k++){
-            if(strcmp(find, kamus)==0){
+            if(strcmp(find, kamus[mid])==0){
                 index = k;
                 break;
             }
@@ -44,4 +44,5 @@ for(int i = 0; i<tc; i++){
 
 
     return 0;
+
 }
